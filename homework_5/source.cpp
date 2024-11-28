@@ -8,6 +8,8 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+#define _DEBUG_ 0
+
 struct Code {
 	std::string code;
 	int frequency;
@@ -72,14 +74,16 @@ public:
 	~HaffmanTree();
 	void GenerateHaffmanTree(const std::vector<int>& frequency);
 	std::vector<Code> GenerateCodes();
+#if _DEBUG_
 	void PrintTree() const;
+#endif
 private:
 	HaffmanTree(const HaffmanTree& other) = delete;
 	HaffmanTree& operator=(const HaffmanTree& other) = delete;
 
 	void GenerateCodesWithDFS(const TreeNode* const root, std::string& code, std::vector<Code>& codes);
 };
-
+#if _DEBUG_
 void HaffmanTree::PrintTree() const {
 	cout << "------------Print HaffmanTree-------------" << endl;
 	if (root == nullptr)
@@ -102,7 +106,7 @@ void HaffmanTree::PrintTree() const {
 	cout << "------------Complete HaffmanTree-------------" << endl;
 	cout << endl;
 }
-
+#endif
 HaffmanTree::~HaffmanTree() {
 	if (root == nullptr)
 		return;
@@ -175,12 +179,13 @@ int main() {
 
 	HaffmanTree haffmanTree;
 	haffmanTree.GenerateHaffmanTree(frequency);
+#if _DEBUG_
 	haffmanTree.PrintTree();
+#endif
 	std::vector<Code> codes = haffmanTree.GenerateCodes();
 	for (const auto& code : codes) {
 		printf("%-5d %s\n", code.frequency, code.code.c_str());
 	}
-
 	return 0;
 }
 
