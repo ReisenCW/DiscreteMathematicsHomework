@@ -1,6 +1,6 @@
 #include "Functions.h"
 
-#define _DEBUG_ 1
+#define _DEBUG_ 0
 
 std::vector<std::string> GenerateVertices(int n, const std::string& alphabet) //生成DeBruijn图的顶点串集合
 {
